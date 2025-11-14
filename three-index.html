@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Portfolio - Gabriel Molter Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #container3D {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        /* Debug panel */
+        #debug-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #0ff;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            z-index: 100;
+            font-family: 'Courier New', monospace;
+            max-width: 300px;
+            border: 2px solid #0ff;
+        }
+
+        .debug-line {
+            margin: 5px 0;
+            color: #0ff;
+        }
+
+        .debug-error {
+            color: #ff0066;
+            font-weight: bold;
+        }
+
+        .debug-success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        /* Content overlay (for testing scroll) */
+        #content-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 300vh;
+            z-index: 5;
+            pointer-events: none;
+            background: linear-gradient(to bottom,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        #scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #0ff;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 100;
+            border: 2px solid #0ff;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Three.js Container -->
+    <div id="container3D"></div>
+
+    <!-- Content for scrolling -->
+    <div id="content-overlay"></div>
+
+    <!-- Debug Panel -->
+    <div id="debug-panel">
+        <div class="debug-line">🔍 DEBUG PANEL</div>
+        <div class="debug-line" id="status-init">⏳ Initializing...</div>
+        <div class="debug-line" id="status-renderer">⏳ Renderer...</div>
+        <div class="debug-line" id="status-camera">⏳ Camera...</div>
+        <div class="debug-line" id="status-lights">⏳ Lights...</div>
+        <div class="debug-line" id="status-objects">⏳ Objects...</div>
+        <div class="debug-line" id="status-animation">⏳ Animation...</div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div id="scroll-indicator">
+        📊 Scroll: <span id="scroll-value">0%</span>
+    </div>
+
+    <!-- Three.js Library (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- OrbitControls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- Main Scene Script -->
+    <script src="script.js"></script>
+</body>
+</html>
