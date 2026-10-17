@@ -1,374 +1,454 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#3b82f6">
-    <meta name="description" content="Nayan Phadke | Full-stack Developer & AI Enthusiast. Explore my portfolio featuring interactive 3D experiences and innovative web projects.">
-    <meta name="keywords" content="developer, portfolio, web development, AI, machine learning, JavaScript, React, Python">
-    <meta name="author" content="Nayan Phadke">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nayanphadke.com">
-    <meta property="og:title" content="Nayan Phadke - Full-Stack Developer & AI Enthusiast">
-    <meta property="og:description" content="Interactive 3D portfolio showcasing web development and AI projects">
-    <meta property="og:image" content="https://nayanphadke.com/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nayan Phadke - Full-Stack Developer">
-    <meta name="twitter:description" content="Explore interactive 3D portfolio with cutting-edge web projects">
-    
-    <title>Nayan Phadke - Full-Stack Developer & AI Enthusiast</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%233b82f6' width='100' height='100'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white' font-family='monospace'>NP</text></svg>">
-    <link rel="shortcut icon" href="favicon.ico">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles/premium.css">
-    
-    <!-- Preconnect to CDN -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://threejs.org">
-    
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Nayan Phadke",
-        "url": "https://nayanphadke.com",
-        "jobTitle": "Full-Stack Developer",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Freelance"
-        },
-        "sameAs": [
-            "https://github.com/nayan200-coder"
-        ]
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0f12">
+  <meta name="description" content="Nayan — student and aspiring developer exploring Python, AI/ML, automation, and cybersecurity.">
+
+  <title>Nayan — Aspiring Developer</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f12;
+      --surface: #11181d;
+      --text: #edf5f7;
+      --muted: #9aaab0;
+      --line: #25343b;
+      --accent: #80e5df;
+      --width: 1000px;
     }
-    </script>
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+    }
+
+    .wrap {
+      width: min(var(--width), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .skip {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .skip:focus {
+      left: 12px;
+      top: 12px;
+      z-index: 99;
+      padding: 10px;
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgb(11 15 18 / 88%);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.07em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(12px, 3vw, 28px);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .nav-links a:hover,
+    footer a:hover { color: var(--accent); }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding-block: clamp(100px, 17vw, 170px) 110px;
+    }
+
+    /* Lightweight ambient background — no external libraries */
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 340px;
+      height: 340px;
+      right: -90px;
+      top: 80px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle, rgb(128 229 223 / 12%), transparent 70%
+      );
+      filter: blur(10px);
+      animation: float 10s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-25px, 22px, 0); }
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      vertical-align: 1px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 25px;
+      font-size: clamp(3rem, 9vw, 6.4rem);
+      font-weight: 760;
+      line-height: 0.99;
+      letter-spacing: -0.075em;
+    }
+
+    h1 span { color: var(--muted); }
+
+    .intro {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 45px;
+      padding: 0 17px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      font-size: 0.9rem;
+      font-weight: 650;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .primary {
+      color: #071516;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .primary:hover { background: #a6f3ee; }
+
+    .secondary:hover { background: var(--surface); }
+
+    .note {
+      margin-top: 55px;
+      padding-top: 17px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .note strong {
+      margin-right: 8px;
+      color: var(--text);
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.7fr) 1.3fr;
+      gap: clamp(28px, 7vw, 80px);
+      padding-block: clamp(65px, 10vw, 100px);
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2,
+    .contact h2 {
+      margin-bottom: 0;
+      font-size: clamp(2rem, 4.5vw, 3.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.06em;
+    }
+
+    .copy { color: var(--muted); }
+    .copy p:last-child { margin-bottom: 0; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: start;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: #dce9e9;
+      font-size: 0.9rem;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 35px 1fr;
+      gap: 15px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface);
+      transition: border-color 180ms ease;
+    }
+
+    .project:hover { border-color: #46666a; }
+
+    .number {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+
+    .project h3 {
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .project p {
+      margin-bottom: 12px;
+      color: var(--muted);
+    }
+
+    .status {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    .contact {
+      padding-block: clamp(75px, 12vw, 120px);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      background: radial-gradient(
+        ellipse at 50% 100%, rgb(128 229 223 / 6%), transparent 65%
+      );
+    }
+
+    .contact h2 { font-size: clamp(2.5rem, 6vw, 4rem); }
+
+    .contact p {
+      max-width: 480px;
+      margin: 20px auto 25px;
+      color: var(--muted);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 23px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 650px) {
+      .wrap { width: calc(100% - 32px); }
+      .nav { min-height: 62px; }
+      .nav-links { gap: 12px; font-size: 0.8rem; }
+      .hero { padding-top: 90px; }
+      .section { grid-template-columns: 1fr; gap: 23px; }
+      .project { padding: 19px; }
+    }
+
+    @media (max-width: 390px) {
+      .nav-links { gap: 9px; font-size: 0.73rem; }
+      .logo { font-size: 1.1rem; }
+      footer { flex-direction: column; gap: 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Three.js Background System -->
-    <div id="three-bg"></div>
-    <script type="module" src="three-bg.js"></script>
-    <div id="loading-screen">
-        <div class="loader-text">Loading...</div>
-        <div class="loader-bar"></div>
-    </div>
+  <a class="skip" href="#main">Skip to content</a>
 
-    <div class="scroll-progress">
-        <div class="scroll-progress-bar"></div>
-    </div>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="logo" href="#top" aria-label="Nayan home">nayan<span>.</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Work</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-    <header>
-        <nav class="container">
-            <a href="#hero" class="logo">Nayan Phadke</a>
-            <div class="nav-links">
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <button title="Toggle Theme">☀️</button>
-            </div>
-        </nav>
-    </header>
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <p class="eyebrow"><span class="dot"></span> Student · Aspiring Developer</p>
+      <h1>Curious by nature.<br><span>Building as I learn.</span></h1>
+      <p class="intro">
+        I'm Nayan, exploring Python, AI/ML, automation, and cybersecurity.
+        I enjoy learning new things, experimenting with ideas, and cubing.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="#projects">Explore my work ↓</a>
+        <a class="button secondary"
+           href="https://github.com/nayan200-coder"
+           target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+      <div class="note">
+        <strong>Currently</strong>
+        Learning, experimenting, and working toward useful projects.
+      </div>
+    </section>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="container hero-section">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">Nayan Phadke</h1>
-                    <p id="hero-subtitle" class="text-primary hero-subtitle"></p>
-                    <p class="text-muted-foreground hero-description">
-                        Building innovative web experiences with Three.js, React, and AI. 
-                        I transform ideas into interactive, performant digital products.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#projects" class="button button-primary">View My Work</a>
-                        <a href="#contact" class="button button-secondary">Get In Touch</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="floating-card">
-                        <span>{ }</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="section wrap" id="about">
+      <div>
+        <p class="eyebrow">A LITTLE ABOUT ME</p>
+        <h2>Learning in public.</h2>
+      </div>
+      <div class="copy">
+        <p>
+          I'm a student and aspiring developer with a curiosity for technology
+          and a passion for learning. I'm exploring Python, AI/ML, automation,
+          and cybersecurity, building my skills one step at a time.
+        </p>
+        <p>
+          Outside of coding, I enjoy cubing and discovering new things.
+          I'm still experimenting, learning from what I build, and working
+          toward creating useful projects that turn ideas into reality.
+        </p>
+      </div>
+    </section>
 
-        <!-- Featured Project -->
-        <section id="featured" class="container featured-section">
-            <h2 class="section-title">Featured Work</h2>
-            <div class="featured-project">
-                <div class="featured-image">
-                    <div class="project-image-placeholder"></div>
-                </div>
-                <div class="featured-content">
-                    <h3>Interactive 3D Portfolio</h3>
-                    <p class="text-muted-foreground">
-                        A cutting-edge portfolio website featuring immersive 3D backgrounds, 
-                        smooth scroll animations, and responsive design. Built with Three.js, 
-                        this project demonstrates advanced WebGL techniques and creative use of 
-                        3D graphics in web development.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Three.js</span>
-                        <span class="tech-tag">WebGL</span>
-                        <span class="tech-tag">HTML/CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <div class="featured-links">
-                        <a href="#" class="button button-primary">Live Demo</a>
-                        <a href="https://github.com/nayan200-coder" target="_blank" class="button button-secondary">View Code</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="section wrap" id="skills">
+      <div>
+        <p class="eyebrow">WHAT I'M EXPLORING</p>
+        <h2>Skills & interests.</h2>
+      </div>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">AI / Machine Learning</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Cybersecurity</span>
+        <span class="tag">Problem solving</span>
+        <span class="tag">Cubing</span>
+      </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="container projects-section">
-            <h2 class="section-title">My Projects</h2>
-            <div class="grid">
-                <div class="card project-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Project Alpha</h3>
-                        <p class="card-description">An innovative full-stack application</p>
-                    </div>
-                    <div class="card-content">
-                        <div class="project-image"></div>
-                        <p class="tech-stack-label">Tech Stack:</p>
-                        <div class="tech-items">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Tailwind</span>
-                            <span class="tech-tag">Firebase</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="button button-small">View Demo</a>
-                        <a href="https://github.com/nayan200-coder" target="_blank" class="button button-small">View Code</a>
-                    </div>
-                </div>
-
-                <div class="card project-card">
-                    <div class="card-header">
-                        <h3 class="card-title">AI Assistant</h3>
-                        <p class="card-description">Machine learning project with real-world impact</p>
-                    </div>
-                    <div class="card-content">
-                        <div class="project-image"></div>
-                        <p class="tech-stack-label">Tech Stack:</p>
-                        <div class="tech-items">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">React</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="button button-small">View Demo</a>
-                        <a href="https://github.com/nayan200-coder" target="_blank" class="button button-small">View Code</a>
-                    </div>
-                </div>
-
-                <div class="card project-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Data Visualization</h3>
-                        <p class="card-description">Interactive charts and real-time analytics</p>
-                    </div>
-                    <div class="card-content">
-                        <div class="project-image"></div>
-                        <p class="tech-stack-label">Tech Stack:</p>
-                        <div class="tech-items">
-                            <span class="tech-tag">D3.js</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="button button-small">View Demo</a>
-                        <a href="https://github.com/nayan200-coder" target="_blank" class="button button-small">View Code</a>
-                    </div>
-                </div>
-
-                <div class="card project-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Web Game</h3>
-                        <p class="card-description">Browser-based game with Three.js graphics</p>
-                    </div>
-                    <div class="card-content">
-                        <div class="project-image"></div>
-                        <p class="tech-stack-label">Tech Stack:</p>
-                        <div class="tech-items">
-                            <span class="tech-tag">Three.js</span>
-                            <span class="tech-tag">Cannon.js</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="button button-small">View Demo</a>
-                        <a href="https://github.com/nayan200-coder" target="_blank" class="button button-small">View Code</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="container skills-section">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Three.js</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">Tailwind CSS</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Express</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Firebase</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>AI & Data</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Pandas</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & DevOps</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">VSCode</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Vercel/Netlify</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- About Section -->
-        <section id="about" class="container about-section">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="text-muted-foreground">
-                        I'm a passionate full-stack developer and AI enthusiast based in India. 
-                        With a keen interest in building immersive web experiences, I specialize in 
-                        creating interactive 3D interfaces, web applications, and AI-powered solutions.
-                    </p>
-                    <p class="text-muted-foreground">
-                        My journey began with curiosity about how modern web technologies work. 
-                        Today, I'm focused on the intersection of web development and artificial intelligence, 
-                        exploring how these fields can combine to create powerful digital products.
-                    </p>
-                    <p class="text-muted-foreground">
-                        When I'm not coding, you'll find me exploring new technologies, contributing to open-source, 
-                        or working on side projects that challenge me to learn something new.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-value">50+</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">2+</span>
-                            <span class="stat-label">Years</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">100%</span>
-                            <span class="stat-label">Dedication</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="container contact-section">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="text-center text-muted-foreground contact-intro">
-                Have a question or want to collaborate? Feel free to reach out!
-            </p>
-            
-            <div class="contact-links">
-                <a href="https://github.com/nayan200-coder" target="_blank" class="contact-button" title="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                    GitHub
-                </a>
-                <a href="mailto:vipapexgod@gmail.com" class="contact-button" title="Email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                    Email
-                </a>
-                <a href="https://linkedin.com/in/nayan-phadke" target="_blank" class="contact-button" title="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                    LinkedIn
-                </a>
-            </div>
-
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input id="name" placeholder="Your full name" type="text" required />
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" placeholder="you@example.com" type="email" required />
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Your message..." rows="6" required></textarea>
-                </div>
-                <button type="submit" class="button button-primary form-button">
-                    Send Message
-                </button>
-            </form>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="text-muted-foreground">
-                © 2025 Nayan Phadke. Built with HTML, CSS, JavaScript, and Three.js.
-            </p>
-            <p class="text-muted-foreground footer-built">
-                Designed & developed with ❤️
-            </p>
+    <section class="section wrap" id="projects">
+      <div>
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2>Work in progress.</h2>
+      </div>
+      <article class="project">
+        <div class="number">01</div>
+        <div>
+          <h3>More coming soon</h3>
+          <p>
+            I'm working on projects to put what I learn into practice.
+            I'll share them here when they're ready.
+          </p>
+          <span class="status"><span class="dot"></span> In progress</span>
         </div>
-    </footer>
+      </article>
+    </section>
 
-    <script src="js/utils.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
-    
-    <!-- Performance Analytics (optional) -->
-    <noscript>
-        <p>This website requires JavaScript to display 3D content. Please enable JavaScript in your browser settings.</p>
-    </noscript>
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <p class="eyebrow">SAY HELLO</p>
+        <h2>Let's connect.</h2>
+        <p>
+          Have an interesting idea, a project to share, or something new
+          to learn? Feel free to reach out.
+        </p>
+        <div class="actions" style="justify-content:center">
+          <a class="button primary" href="mailto:phadkenayan@gmail.com">
+            Email me ↗
+          </a>
+          <a class="button secondary"
+             href="https://github.com/nayan200-coder"
+             target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© <span id="year">2026</span> Nayan</span>
+    <a href="https://github.com/nayan200-coder"
+       target="_blank" rel="noopener noreferrer">Built while learning ↗</a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
